@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Christopher Kraus</title>
+
+  <!-- ============================================================
+       christopher-kraus.de — Phase 1
+       Einzelne HTML-Datei, keine Abhängigkeiten.
+       Zweisprachig (DE/EN) per JavaScript-Toggle.
+       ============================================================ -->
+
+  <style>
+    /* ──────────────────────────────────────────────
+       RESET & BASIS
+       ────────────────────────────────────────────── */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      /* Basis für rem-Berechnung */
+      font-size: 18px;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      background-color: #ffffff;
+      color: #111111;
+      /* System-Schriftstack — kein externer Load */
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Helvetica,
+        Arial,
+        sans-serif,
+        "Apple Color Emoji",
+        "Segoe UI Emoji";
+      font-weight: 400;
+      line-height: 1.7;
+      /* Vertikale Zentrierung auf großen Screens */
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 2rem 1.5rem;
+    }
+
+    /* ──────────────────────────────────────────────
+       SPRACH-TOGGLE (oben rechts)
+       ────────────────────────────────────────────── */
+    .lang-toggle {
+      position: fixed;
+      top: 2rem;
+      right: 2rem;
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      color: #111111;
+      user-select: none;
+      z-index: 10;
+    }
+
+    .lang-toggle span {
+      cursor: pointer;
+      padding: 0.15em 0;
+      transition: opacity 0.2s ease;
+    }
+
+    .lang-toggle span:hover {
+      opacity: 0.5;
+    }
+
+    /* Aktive Sprache: volle Deckkraft + Unterstrich */
+    .lang-toggle span.active {
+      opacity: 1;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    /* Inaktive Sprache: reduzierte Deckkraft */
+    .lang-toggle span:not(.active) {
+      opacity: 0.35;
+    }
+
+    .lang-separator {
+      display: inline-block;
+      width: 1.2em;
+      text-align: center;
+      opacity: 0.25;
+      cursor: default;
+    }
+
+    /* ──────────────────────────────────────────────
+       INHALT
+       ────────────────────────────────────────────── */
+    .content {
+      max-width: 620px;
+      /* Leicht links vom Zentrum — wie lovefrom.com */
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    /* Name */
+    h1 {
+      font-size: 1.55rem;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      margin-bottom: 1.8rem;
+      line-height: 1.25;
+    }
+
+    /* Bio-Text */
+    .bio {
+      font-size: 1.05rem;
+      font-weight: 400;
+      line-height: 1.75;
+      color: #111111;
+    }
+
+    /* Platzhalter in eckigen Klammern visuell absetzen */
+    .bio .placeholder {
+      color: #999999;
+    }
+
+    /* Sprachblöcke: nur der aktive wird angezeigt */
+    .lang-block {
+      display: none;
+    }
+    .lang-block.visible {
+      display: block;
+    }
+
+    /* ──────────────────────────────────────────────
+       RESPONSIVE ANPASSUNGEN
+       ────────────────────────────────────────────── */
+
+    /* Tablet / iPad */
+    @media (min-width: 768px) {
+      html { font-size: 19px; }
+      body { padding: 3rem 2.5rem; }
+      .content { max-width: 640px; }
+    }
+
+    /* Desktop */
+    @media (min-width: 1200px) {
+      html { font-size: 20px; }
+      body { padding: 4rem 3rem; }
+      .content { max-width: 660px; }
+    }
+
+    /* Kleine Phones */
+    @media (max-width: 400px) {
+      html { font-size: 17px; }
+      body { padding: 1.5rem 1.25rem; }
+      .lang-toggle { top: 1.25rem; right: 1.25rem; }
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <!-- ── Sprach-Toggle ── -->
+
+  <div class="lang-toggle" role="navigation" aria-label="Sprachauswahl / Language selection">
+    <span id="btn-de" class="active" onclick="setLang('de')" role="button" tabindex="0" aria-pressed="true">DE</span>
+    <span class="lang-separator">/</span>
+    <span id="btn-en" onclick="setLang('en')" role="button" tabindex="0" aria-pressed="false">EN</span>
+  </div>
+
+  <!-- ── Hauptinhalt ── -->
+
+  <main class="content">
+
+```
+<!-- Deutsch -->
+<div class="lang-block visible" data-lang="de">
+  <h1>Christopher Kraus</h1>
+  <p class="bio">
+    <span class="placeholder">[Kurze Beschreibung der aktuellen Tätigkeit oder Rolle, z.&thinsp;B. »Ich arbeite an der Schnittstelle von Technologie und Design.«]</span>
+    <span class="placeholder">[Ein zweiter Satz über Interessen, Hintergrund oder Perspektive.]</span>
+    <span class="placeholder">[Optional: ein dritter Satz, der die persönliche Haltung oder Vision beschreibt.]</span>
+  </p>
+</div>
+
+<!-- English -->
+<div class="lang-block" data-lang="en">
+  <h1>Christopher Kraus</h1>
+  <p class="bio">
+    <span class="placeholder">[Brief description of your current work or role, e.g. "I work at the intersection of technology and design."]</span>
+    <span class="placeholder">[A second sentence about interests, background, or perspective.]</span>
+    <span class="placeholder">[Optional: a third sentence describing your personal stance or vision.]</span>
+  </p>
+</div>
+```
+
+  </main>
+
+  <!-- ── JavaScript: Sprachumschaltung ── -->
+
+  <script>
+    /**
+     * setLang(lang)
+     * Wechselt die angezeigte Sprache ohne Page Reload.
+     * @param {string} lang — 'de' oder 'en'
+     */
+    function setLang(lang) {
+      // 1. Alle Sprachblöcke ausblenden
+      document.querySelectorAll('.lang-block').forEach(function(block) {
+        block.classList.remove('visible');
+      });
+
+      // 2. Passenden Block einblenden
+      var target = document.querySelector('.lang-block[data-lang="' + lang + '"]');
+      if (target) {
+        target.classList.add('visible');
+      }
+
+      // 3. Toggle-Buttons aktualisieren
+      document.getElementById('btn-de').classList.toggle('active', lang === 'de');
+      document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+
+      // 4. aria-pressed für Barrierefreiheit
+      document.getElementById('btn-de').setAttribute('aria-pressed', lang === 'de');
+      document.getElementById('btn-en').setAttribute('aria-pressed', lang === 'en');
+
+      // 5. html lang-Attribut anpassen
+      document.documentElement.lang = lang;
+    }
+
+    // Tastatur-Support: Enter oder Leertaste löst den Toggle aus
+    document.querySelectorAll('.lang-toggle span[role="button"]').forEach(function(btn) {
+      btn.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          btn.click();
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
