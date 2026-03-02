@@ -6,16 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Christopher Kraus</title>
 
-  <!-- ============================================================
-       christopher-kraus.de — Phase 1
-       Einzelne HTML-Datei, keine Abhängigkeiten.
-       Zweisprachig (DE/EN) per JavaScript-Toggle.
-       ============================================================ -->
-
   <style>
-    /* ──────────────────────────────────────────────
-       RESET & BASIS
-       ────────────────────────────────────────────── */
     *, *::before, *::after {
       margin: 0;
       padding: 0;
@@ -23,7 +14,6 @@
     }
 
     html {
-      /* Basis für rem-Berechnung */
       font-size: 18px;
       -webkit-text-size-adjust: 100%;
     }
@@ -31,7 +21,6 @@
     body {
       background-color: #ffffff;
       color: #111111;
-      /* System-Schriftstack — kein externer Load */
       font-family:
         -apple-system,
         BlinkMacSystemFont,
@@ -44,7 +33,6 @@
         "Segoe UI Emoji";
       font-weight: 400;
       line-height: 1.7;
-      /* Vertikale Zentrierung auf großen Screens */
       min-height: 100vh;
       display: flex;
       flex-direction: column;
@@ -52,9 +40,7 @@
       padding: 2rem 1.5rem;
     }
 
-    /* ──────────────────────────────────────────────
-       SPRACH-TOGGLE (oben rechts)
-       ────────────────────────────────────────────── */
+    /* ── Sprach-Toggle ── */
     .lang-toggle {
       position: fixed;
       top: 2rem;
@@ -76,14 +62,12 @@
       opacity: 0.5;
     }
 
-    /* Aktive Sprache: volle Deckkraft + Unterstrich */
     .lang-toggle span.active {
       opacity: 1;
       text-decoration: underline;
       text-underline-offset: 3px;
     }
 
-    /* Inaktive Sprache: reduzierte Deckkraft */
     .lang-toggle span:not(.active) {
       opacity: 0.35;
     }
@@ -96,17 +80,13 @@
       cursor: default;
     }
 
-    /* ──────────────────────────────────────────────
-       INHALT
-       ────────────────────────────────────────────── */
+    /* ── Inhalt ── */
     .content {
       max-width: 620px;
-      /* Leicht links vom Zentrum — wie lovefrom.com */
       margin: 0 auto;
       width: 100%;
     }
 
-    /* Name */
     h1 {
       font-size: 1.55rem;
       font-weight: 500;
@@ -115,7 +95,6 @@
       line-height: 1.25;
     }
 
-    /* Bio-Text */
     .bio {
       font-size: 1.05rem;
       font-weight: 400;
@@ -123,12 +102,6 @@
       color: #111111;
     }
 
-    /* Platzhalter in eckigen Klammern visuell absetzen */
-    .bio .placeholder {
-      color: #999999;
-    }
-
-    /* Sprachblöcke: nur der aktive wird angezeigt */
     .lang-block {
       display: none;
     }
@@ -136,29 +109,44 @@
       display: block;
     }
 
-    /* ──────────────────────────────────────────────
-       RESPONSIVE ANPASSUNGEN
-       ────────────────────────────────────────────── */
+    /* ── SVG-Illustration ── */
+    .illustration {
+      margin-top: 3.5rem;
+      max-width: 120px;
+      opacity: 0.4;
+      transition: opacity 0.3s ease;
+    }
 
-    /* Tablet / iPad */
+    .illustration:hover {
+      opacity: 0.6;
+    }
+
+    .illustration svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* ── Responsive ── */
     @media (min-width: 768px) {
       html { font-size: 19px; }
       body { padding: 3rem 2.5rem; }
       .content { max-width: 640px; }
+      .illustration { max-width: 130px; }
     }
 
-    /* Desktop */
     @media (min-width: 1200px) {
       html { font-size: 20px; }
       body { padding: 4rem 3rem; }
       .content { max-width: 660px; }
+      .illustration { max-width: 140px; }
     }
 
-    /* Kleine Phones */
     @media (max-width: 400px) {
       html { font-size: 17px; }
       body { padding: 1.5rem 1.25rem; }
       .lang-toggle { top: 1.25rem; right: 1.25rem; }
+      .illustration { max-width: 100px; }
     }
   </style>
 
@@ -178,58 +166,56 @@
 
   <main class="content">
 
+```
 <!-- Deutsch -->
 <div class="lang-block visible" data-lang="de">
   <h1>Christopher Kraus</h1>
   <p class="bio">
-    Ich entwickle Strategie für digitale Produkte, gerade da, wo sich die Grundlagen verschieben. Die Entscheidungen, die alles Kommende ermöglichen oder verhindern, werden bereits getroffen. Es braucht technische Tiefe, Neugier und den Mut, trotz Unklarheit anzufangen. Wenn ich nicht arbeite, bin ich gern draußen — am liebsten abseits befestigter Strecken, am liebsten zu lang.
+    Ich entwickle Strategie für digitale Produkte, gerade da, wo sich die Grundlagen verschieben. Die Architekturentscheidungen, die alles Kommende ermöglichen oder verhindern, werden bereits getroffen. Das braucht technische Tiefe, Neugier und den Mut, trotz Unklarheit anzufangen. Wenn ich nicht arbeite, bin ich gern draußen&thinsp;— am liebsten abseits befestigter Strecken, am liebsten zu lang.
   </p>
-
 </div>
 
 <!-- English -->
 <div class="lang-block" data-lang="en">
   <h1>Christopher Kraus</h1>
   <p class="bio">
-    I develop strategy for digital products, especially where the fundamentals are shifting. The decisions that will enable or prevent everything to come are already being made. It takes technical depth, curiosity and the courage to start despite uncertainty. When I’m not working, I like being outside — preferably off paved roads, preferably too long.​​​​​​​​​​​​​​​​
+    I develop strategy for digital products, especially where the fundamentals are shifting. The architectural decisions that will enable or prevent everything to come are already being made. That takes technical depth, curiosity, and the courage to start despite uncertainty. When I'm not working, I like being outside&thinsp;— preferably off paved roads, preferably too long.
   </p>
 </div>
 
+<!-- ── Illustration ── -->
+<div class="illustration" aria-hidden="true">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 657 739" fill="none">
+    <path d="M366,275 L366,292 L381,287 L368,305 L378,290 L400,300 L379,290 L414,299 L375,306 L378,293 L366,326 L377,348 L371,326 L399,330 L386,318 L426,334 L377,352 L390,380 L399,373 L384,392 L394,458 L409,429 L391,457 L405,411 L393,428 L384,392 L416,366 L394,411 L418,378 L406,405 L398,395 L405,409 L435,376 L413,354 L392,361 L433,361 L417,377 L393,363 L389,378 L387,351 L419,353 L399,348 L415,339 L423,353 L429,329 L385,315 L423,323 L392,307 L424,316 L395,306 L417,298 L393,294 L413,290 L426,308 L427,289 L367,292 L367,275" stroke="#1a1a1a" stroke-width="1.0" opacity="0.55" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M487,80 L476,106 L425,121 L407,149 L431,128 L441,132 L424,136 L390,174 L420,179 L410,172 L431,151 L420,160 L433,164 L434,152 L422,153 L407,176 L394,175 L422,141 L438,150 L473,138 L470,150 L455,153 L471,150 L473,137 L453,145 L441,138 L471,126 L444,132 L438,150 L441,143 L422,140 L445,130 L426,132 L430,123 L478,104 L477,131 L476,108 L463,123 L433,125 L474,117 L467,139 L477,132 L476,154 L478,101 L497,100 L509,111 L500,107 L509,106 L508,94 L500,102 L490,91 L483,101 L486,81" stroke="#1a1a1a" stroke-width="1.0" opacity="0.55" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M377,286 L367,301 L380,291 L368,310 L377,348 L392,338 L378,348 L379,325 L399,330 L381,322 L426,334 L377,351 L390,380 L417,368 L394,411 L399,389 L422,384 L406,405 L398,395 L405,409 L435,375 L420,375 L433,360 L396,359 L389,378 L379,353 L412,339 L423,352 L416,340 L429,329 L421,305 L395,306 L420,301 L399,295 L414,299 L392,307 L385,297 L376,306 L392,308 L371,326 L379,293 L394,299 L380,286" stroke="#1a1a1a" stroke-width="1.0" opacity="0.55" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M505,53 L489,74 L491,99 L478,100 L472,138 L437,150 L422,140 L441,132 L429,132 L395,178 L423,153 L435,156 L422,153 L408,175 L394,176 L422,141 L438,150 L476,131 L476,154 L480,99 L503,110 L512,93 L519,122 L521,94 L593,121 L519,96 L511,54 L519,90 L492,82 L506,53" stroke="#1a1a1a" stroke-width="1.0" opacity="0.55" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M411,290 L393,295 L413,301 L385,301 L420,305 L425,325 L390,317 L394,312 L423,323 L376,306 L392,308 L381,312 L390,318 L371,326 L375,318 L368,312 L378,293 L366,322 L380,350 L407,341 L379,349 L392,338 L386,335 L392,337 L376,345 L373,333 L381,322 L399,330 L383,324 L386,318 L425,331 L405,345 L395,343 L384,355 L394,350 L389,358 L412,352 L397,353 L396,343 L403,345 L397,349 L419,352 L398,348 L419,343 L423,352 L416,339 L429,331 L422,306 L401,302 L421,302 L393,294 L411,292" stroke="#1a1a1a" stroke-width="1.0" opacity="0.55" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M517,512 L513,566 L508,567 L508,620 L500,614 L506,602 L508,609 L504,602 L494,605 L502,608 L496,612 L488,606 L490,596 L495,601 L488,596 L492,588 L495,594 L488,583 L486,631 L492,632 L489,616 L490,627 L485,624 L489,608 L495,631 L485,645 L497,661 L493,641 L486,641 L500,632 L494,630 L501,622 L495,614 L509,624 L514,552 L519,571 L520,549 L513,550 L520,543 L519,537 L513,543 L517,512 L524,526 L523,564 L523,529 L528,528 L519,514" stroke="#1a1a1a" stroke-width="1.0" opacity="0.55" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M558,24 L526,36 L530,60 L522,49 L527,49 L531,79 L543,95 L526,37 L558,24 L577,27 L600,43 L616,65 L617,84 L595,128 L565,125 L549,113 L560,119 L562,115 L566,122 L563,115 L547,108 L544,112 L574,128 L599,126 L600,134 L593,131 L621,147 L601,133 L601,128 L608,133 L605,127 L632,153 L616,132 L619,128 L601,117 L609,116 L599,114 L615,92 L616,55 L580,28 L561,24" stroke="#1a1a1a" stroke-width="1.0" opacity="0.55" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M480,474 L465,519 L466,579 L453,637 L460,681 L453,637 L466,579 L465,519 L480,474 L487,489 L471,574 L473,647 L494,599 L487,603 L494,588 L487,584 L474,647 L467,633 L488,488 L481,475" stroke="#1a1a1a" stroke-width="1.0" opacity="0.55" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M479,475 L465,518 L466,575 L453,635 L460,681 L453,635 L466,575 L465,518 L480,475 L486,507 L476,530 L470,645 L494,599 L487,603 L488,585 L473,646 L467,638 L476,530 L487,490 L481,475" stroke="#1a1a1a" stroke-width="1.0" opacity="0.55" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M473,473 L479,476 L465,519 L466,579 L453,637 L460,681 L453,637 L466,579 L465,519 L480,474 L487,490 L482,489 L486,507 L477,522 L467,643 L473,647 L483,621 L474,647 L467,642 L477,523 L486,507 L482,490 L486,492 L491,481 L486,483 L477,473" stroke="#1a1a1a" stroke-width="1.0" opacity="0.55" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</div>
+```
+
   </main>
 
-  <!-- ── JavaScript: Sprachumschaltung ── -->
-
   <script>
-    /**
-     * setLang(lang)
-     * Wechselt die angezeigte Sprache ohne Page Reload.
-     * @param {string} lang — 'de' oder 'en'
-     */
     function setLang(lang) {
-      // 1. Alle Sprachblöcke ausblenden
       document.querySelectorAll('.lang-block').forEach(function(block) {
         block.classList.remove('visible');
       });
-
-      // 2. Passenden Block einblenden
       var target = document.querySelector('.lang-block[data-lang="' + lang + '"]');
-      if (target) {
-        target.classList.add('visible');
-      }
-
-      // 3. Toggle-Buttons aktualisieren
+      if (target) target.classList.add('visible');
       document.getElementById('btn-de').classList.toggle('active', lang === 'de');
       document.getElementById('btn-en').classList.toggle('active', lang === 'en');
-
-      // 4. aria-pressed für Barrierefreiheit
       document.getElementById('btn-de').setAttribute('aria-pressed', lang === 'de');
       document.getElementById('btn-en').setAttribute('aria-pressed', lang === 'en');
-
-      // 5. html lang-Attribut anpassen
       document.documentElement.lang = lang;
     }
 
-    // Tastatur-Support: Enter oder Leertaste löst den Toggle aus
     document.querySelectorAll('.lang-toggle span[role="button"]').forEach(function(btn) {
       btn.addEventListener('keydown', function(e) {
         if (e.key === 'Enter' || e.key === ' ') {
